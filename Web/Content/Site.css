@@ -16,3 +16,7 @@ select,
 textarea {
     max-width: 280px;
 }
+/*Feed back for user when company not found*/
+.no-data {
+    padding: 10px;
+}

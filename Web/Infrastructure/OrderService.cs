@@ -16,8 +16,7 @@ namespace Web.Infrastructure
             var database = new Database();
 
             // Get the orders
-            var sql1 =
-                "SELECT c.name, o.description, o.order_id FROM company c INNER JOIN [order] o on c.company_id=o.company_id";
+            var sql1 = $"SELECT c.name, o.description, o.order_id FROM company c INNER JOIN [order] o on c.company_id=o.company_id where c.company_id={CompanyId}";
 
             var reader1 = database.ExecuteReader(sql1);
 
@@ -69,10 +68,9 @@ namespace Web.Infrastructure
 
             foreach (var order in values)
             {
-                foreach (var orderproduct in values2)
+                var orderproducts = values2.Where(o => o.OrderId == order.OrderId);
+                foreach (var orderproduct in orderproducts)
                 {
-                    if (orderproduct.OrderId != order.OrderId)
-                        continue;
 
                     order.OrderProducts.Add(orderproduct);
                     order.OrderTotal = order.OrderTotal + (orderproduct.Price * orderproduct.Quantity);
