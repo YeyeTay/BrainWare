@@ -14,7 +14,7 @@ namespace Web.Controllers
     public class OrderController : ApiController
     {
         [HttpGet]
-        public IEnumerable<Order> GetOrders(int id = 1)
+        public IEnumerable<Order> GetOrders(int id)
         {
             var data = new OrderService();
 

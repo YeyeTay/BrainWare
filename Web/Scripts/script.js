@@ -7,13 +7,14 @@
 
 window.appInsights = appInsights;
 appInsights.trackPageView();
-
-    $(document).ready(function () {
+    
+$("#companyIdSubmit").click(function () {
         var $orders = $('#orders');
+        var $companyId = $('#companyId').val();
         $.ajax({
             'url': '/api/order',
             'type': 'GET',
-            'data': {id:1},
+            'data': { id: $companyId},
             'success': function (data) {
 
 
@@ -35,12 +36,12 @@ appInsights.trackPageView();
                             $productList.appendTo($li);
                         });
 
-                    $orders.append($orderList);
+                    $orders.html($orderList);
                 }
                 else {
 
-                    var $test = $("<p class='no-data'/>").text("Oops: Looks like we couldn't find orders for your company");
-                    $orders.append($test);
+                    var $noData = $("<p class='no-data'/>").text("Oops: Looks like we couldn't find orders for your company");
+                    $orders.html($noData);
                 }
             }
         });

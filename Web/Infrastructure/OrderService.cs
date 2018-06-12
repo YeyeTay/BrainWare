@@ -35,7 +35,10 @@ namespace Web.Infrastructure
                 });
 
             }
-
+            if(!values.Any())
+            {
+                return values;
+            }
             reader1.Close();
 
             //Get the order products
